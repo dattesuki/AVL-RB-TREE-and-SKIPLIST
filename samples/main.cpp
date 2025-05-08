@@ -2,11 +2,12 @@
 //Litvyakov D. D.
 //
 
-#include "template.h"
+#include "tree.h"
+#include "skiplist.h"
 #include <iostream>
 
 int main()
 {
-	std::cout<<check();
+
 	return 0;
 }
