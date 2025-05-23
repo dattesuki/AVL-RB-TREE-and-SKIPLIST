@@ -10,7 +10,7 @@
 #include <queue>
 #include <stack>
 #include <climits>
-#define prob 0.5
+//#define prob 0.5
 using namespace std;
 
 template <typename type>
@@ -20,13 +20,14 @@ struct Node {
 	std::vector<Node<type>*> Level;
 	Node<type>(int _key, const type& _val): key(_key) {
 		val = new type(_val);
+		Level.push_back(nullptr);
 	}
 	~Node<type>(){
 		delete val;
 	}
 };
 
-bool Check() {
+bool Check(double prob) {
 	std::random_device r;
 	std::default_random_engine e(r());
 	std::uniform_real_distribution<double> coef_gen(0., 1.);
@@ -35,9 +36,9 @@ bool Check() {
 	else return false;
 }
 
-size_t GetLevel() {
+size_t GetLevel(double prob) {
 	size_t temp = 1;
-	while (Check()) temp++;
+	while (Check(prob)) temp++;
 	return temp;
 }
 
@@ -45,18 +46,18 @@ template <typename type>
 class SkipList {
 //public:
 	Node<type>* head;
-
+	double prob;
 
 	
 public:
 
-	SkipList() {
+	SkipList(double _prob = 0.5):prob(_prob) {
 		head = new Node<type>(INT_MIN, type());
 	}
 
 	~SkipList() {
 		Node<type>* tempNode = head;
-		while (tempNode->Level[0] != nullptr) {
+		while (tempNode != nullptr) {
 			head = tempNode;
 			tempNode = tempNode->Level[0];
 			delete head;
@@ -76,7 +77,7 @@ public:
 
 	bool add(int key, type val) {
 		if (find(key)) return false;
-		size_t tempLevel = GetLevel();
+		size_t tempLevel = GetLevel(prob);
 		while (head->Level.size() <= tempLevel) {
 			head->Level.push_back(nullptr);
 		}

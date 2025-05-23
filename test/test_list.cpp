@@ -11,7 +11,7 @@ TEST(skiplist, test_check)
 }
 
 TEST(skiplist, add_find) {
-    SkipList<int> sl;
+    SkipList<int> sl(0.5);
     EXPECT_FALSE(sl.find(42));
     EXPECT_TRUE(sl.add(42, 100));
     EXPECT_TRUE(sl.find(42));
@@ -19,7 +19,7 @@ TEST(skiplist, add_find) {
 }
 
 TEST(skiplist, remove) {
-    SkipList<int> sl;
+    SkipList<int> sl(0.5);
     EXPECT_TRUE(sl.add(100, 999));
     EXPECT_TRUE(sl.find(100));
     EXPECT_TRUE(sl.remove(100));
@@ -28,7 +28,7 @@ TEST(skiplist, remove) {
 }
 
 TEST(skiplist, add2) {
-    SkipList<int> sl;
+    SkipList<int> sl(0.5);
     for (int i = 0; i < 100; ++i) {
         EXPECT_TRUE(sl.add(i, i * 2));
     }
@@ -48,7 +48,7 @@ TEST(skiplist, add2) {
 }
 
 TEST(skiplist, remove_size) {
-    SkipList<int> sl;
+    SkipList<int> sl(0.5);
     for (int i = 9; i >= 0; --i) {
         EXPECT_TRUE(sl.add(i, i * 10));
     }

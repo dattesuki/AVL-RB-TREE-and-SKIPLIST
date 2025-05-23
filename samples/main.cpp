@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
     AVLTree<int> A(10,10);
-    SkipList<int> B;
+    SkipList<int> B(0.5);
 //    for (size_t a = 0; a < 15; a++) {
 //        A.add(a, a);
 //        B.add(a, a);
