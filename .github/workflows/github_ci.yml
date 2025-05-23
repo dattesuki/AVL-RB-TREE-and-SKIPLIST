@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   windows-build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
         - uses: actions/checkout@v2
         - run: |
@@ -14,7 +14,7 @@ jobs:
             .\build\bin\test_project.exe
     
   linux-build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
         - run: |
